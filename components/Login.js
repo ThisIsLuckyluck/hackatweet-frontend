@@ -8,6 +8,9 @@ import SignIn from "./SingIn";
 import { useState } from 'react'; // importer la fonction hook useState 
 // Import pour le modal
 import { Modal } from 'antd'; //need action in terminal: yarn add andtd
+// FaAwsome icones
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'; //need action in terminal: yarn add etc ..
+import { faXmark } from '@fortawesome/free-solid-svg-icons';
 
 
 // 2- FUNCTION POUR AFFICHAGE -----------------------------------------------
@@ -21,12 +24,24 @@ function Login() {
 
 
 //-------------------------------------------------------------------------------------------------   
-modalSingUp = <SignUp/>;
+modalSingUp = (
+<div>
+    <div className={styles.btnCloseContainer}>
+        <FontAwesomeIcon icon={faXmark} className={styles.btnClose} onClick={() => handleSignUpOne()}/>
+    </div>
+    <div><SignUp/></div>
+</div>
+);
 const handleSignUpOne = () => {  
         setisSignUpVisible(!isSignUpVisible);        
 	};
 
-modalSingIn = <SignIn/>;   
+modalSingIn = (<div>
+    <div className={styles.btnCloseContainer}>
+        <FontAwesomeIcon icon={faXmark} className={styles.btnClose} onClick={() => handleSignInOne()}/>
+    </div>
+    <div><SignIn/></div>
+</div>);   
     const handleSignInOne = () => {
         setisSignInVisible(!isSignInVisible);
 		
@@ -59,8 +74,8 @@ modalSingIn = <SignIn/>;
                     <div>
                         <button className={styles.btnSignUp} id="signup" onClick={() => handleSignUpOne()}>Sign up</button>
                     </div>
-                    {isSignUpVisible && <div id="react-modals">
-				<Modal getContainer="#react-modals" className={styles.modal} visible={isSignUpVisible} closable={false} footer={null}>
+                    {isSignUpVisible && <div id="react-modals" >
+				<Modal className={styles.modal} getContainer="#react-modals"  visible={isSignUpVisible} closable={false} footer={null}>
 					{modalSingUp}
 				</Modal>
 			</div>}
@@ -68,8 +83,8 @@ modalSingIn = <SignIn/>;
                     <div>
                         <button className={styles.btnSignIn} id="signin" onClick={() => handleSignInOne()}>Sign in</button>
                    </div> 
-                   {isSignInVisible && <div id="react-modals">
-				<Modal getContainer="#react-modals" className={styles.modal} visible={isSignInVisible} closable={false} footer={null}>
+                   {isSignInVisible && <div id="react-modals"  >
+				<Modal className={styles.modal} getContainer="#react-modals"  visible={isSignInVisible} closable={false} footer={null}>
 					{modalSingIn}
 				</Modal>
 			</div>}                   
