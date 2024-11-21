@@ -2,11 +2,39 @@
 // Style
 import styles from "../styles/SignUp.module.css";
 // FaAwsome icones
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'; //need action in terminal: yarn add etc ..
 import { faXmark } from '@fortawesome/free-solid-svg-icons';
+// états
+import { useState } from 'react'; // importer la fonction hook useState 
 
 // 2- FUNCTION POUR AFFICHAGE -----------------------------------------------
 function SignUp() {
+
+    // Pour dispatcher info dans état initial
+    //const dispatch = useDispatch();
+
+    // Initier états
+    const [signUpFirstname, setSignUpFirstname] = useState(""); // initialiser l'état
+    const [signUpUsername, setSignUpUsername] = useState(""); // initialiser l'état
+    const [signUpPassword, setSignUpPassword] = useState(""); // initialiser l'état
+
+    const handleSignUpTwo = () => {
+		fetch('http://localhost:3000/users/signup', {
+			method: 'POST',
+			headers: { 'Content-Type': 'application/json' },
+			body: JSON.stringify({ username: signUpUsername, password: signUpPassword }),
+		}).then(response => response.json())
+			.then(data => {
+				if (data.result) {
+					//dispatch(login({ username: signUpUsername, token: data.token }));
+                    setSignUpFirstname('');
+					setSignUpUsername('');
+					setSignUpPassword('');
+					setIsModalVisible(false)
+				}
+			});
+	};
+    
     
         return (
             <div className={styles.registerContainer}>                    
@@ -26,7 +54,7 @@ function SignUp() {
                         <input className={styles.inputSignUp} type="text" placeholder="Firstname" id="signUpFirstname" onChange={(e) => setSignUpFirstname(e.target.value)} value={signUpFirstname} />
                         <input className={styles.inputSignUp} type="text" placeholder="Username" id="signUpUsername" onChange={(e) => setSignUpUsername(e.target.value)} value={signUpUsername} />
                         <input className={styles.inputSignUp} type="password" placeholder="Password" id="signUpPassword" onChange={(e) => setSignUpPassword(e.target.value)} value={signUpPassword} />
-                        <button className={styles.btnSignUp} id="register" onClick={() => handleRegister()}>Sign Up</button>
+                        <button className={styles.btnSignUp} id="register" onClick={() => handleSignUpTwo()}>Sign Up</button>
                     </div>
 
                     

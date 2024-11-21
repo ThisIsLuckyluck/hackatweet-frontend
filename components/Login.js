@@ -4,19 +4,31 @@ import styles from "../styles/Login.module.css";
 // Compo Enfant
 import SignUp from "./SignUp";
 import SignIn from "./SingIn";
-// Import pour le popover
-// import { Modal } from 'antd';
-// import { useEffect, useState } from 'react';
+// Import pour états
+import { useState } from 'react'; // importer la fonction hook useState 
+// Import pour le modal
+import { Modal } from 'antd'; //need action in terminal: yarn add andtd
+
 
 // 2- FUNCTION POUR AFFICHAGE -----------------------------------------------
 function Login() {
 
-    const handleSignUpOne = () => {
-		return <SignUp/>;
+    // initier les états
+    const [isSignUpVisible, setisSignUpVisible] = useState(false);
+    let modalSingUp;
+    const [isSignInVisible, setisSignInVisible] = useState(false);
+    let modalSingIn;
+
+
+//-------------------------------------------------------------------------------------------------   
+modalSingUp = <SignUp/>;
+const handleSignUpOne = () => {  
+        setisSignUpVisible(!isSignUpVisible);        
 	};
 
+modalSingIn = <SignIn/>;   
     const handleSignInOne = () => {
-        return <SignIn/>;
+        setisSignInVisible(!isSignInVisible);
 		
 	};
 
@@ -45,12 +57,22 @@ function Login() {
                     <h2 className={styles.titleH2}>See what's happening</h2>
                     <h3 className={styles.titleH3}>Join Hackatweet today.</h3>
                     <div>
-                        <button className={styles.btnSignUp} id="signin" onClick={() => handleSignUpOne()}>Sign up</button>
+                        <button className={styles.btnSignUp} id="signup" onClick={() => handleSignUpOne()}>Sign up</button>
                     </div>
+                    {isSignUpVisible && <div id="react-modals">
+				<Modal getContainer="#react-modals" className={styles.modal} visible={isSignUpVisible} closable={false} footer={null}>
+					{modalSingUp}
+				</Modal>
+			</div>}
                     <p className={styles.text}>Already have an account</p>
                     <div>
-                        <button className={styles.btnSignIn} id="signup" onClick={() => handleSignInOne()}>Sign in</button>
-                   </div>                    
+                        <button className={styles.btnSignIn} id="signin" onClick={() => handleSignInOne()}>Sign in</button>
+                   </div> 
+                   {isSignInVisible && <div id="react-modals">
+				<Modal getContainer="#react-modals" className={styles.modal} visible={isSignInVisible} closable={false} footer={null}>
+					{modalSingIn}
+				</Modal>
+			</div>}                   
                 </div>
             </div>
         </div>
