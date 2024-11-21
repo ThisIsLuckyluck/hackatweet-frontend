@@ -1,0 +1,54 @@
+.container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 20px;
+    background-color: #15202b;
+}
+
+.exitButton {
+    align-self: flex-end;
+    background: none;
+    border: none;
+    cursor: pointer;
+    color: white;
+}
+
+.signInContainer {
+    margin-bottom: 20px;
+}
+
+.logoRight {
+    width: 128px;
+    height: auto;
+}
+
+.formContainer {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    color: white;
+}
+
+.inputSignIn {
+    width: 100%;
+    max-width: 300px;
+    padding: 10px;
+    margin: 10px 0;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    background-color: #15202b;
+    color: white;
+}
+
+.btnSignIn {
+    padding: 10px 20px;
+    margin-top: 15px;
+    background-color: white;
+    color: black;
+    border: none;
+    cursor: pointer;
+    border-radius: 30px;
+    width: 25em
+}
