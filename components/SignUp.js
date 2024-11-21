@@ -1,11 +1,8 @@
 // 1- IMPORT DES ELTS UTILISES PAR LE COMPONENT------------------------------
 // Style
 import styles from "../styles/SignUp.module.css";
-// FaAwsome icones
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"; //need action in terminal: yarn add etc ..
-import { faXmark } from "@fortawesome/free-solid-svg-icons";
-// états
-import { useState } from "react"; // importer la fonction hook useState
+import { useState } from "react";
+import { useRouter } from "next/router";
 
 // 2- FUNCTION POUR AFFICHAGE -----------------------------------------------
 function SignUp() {
@@ -18,11 +15,14 @@ function SignUp() {
   const [signUpPassword, setSignUpPassword] = useState(""); // initialiser l'état
   const [isSignUpVisible, setisSignUpVisible] = useState(false);
 
-  const handleSignUpTwo = () => {
+  const router = useRouter();
+
+  const handleSignUp = () => {
     fetch("http://localhost:3000/users/signup", {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({
+        firstname: signUpFirstname,
         username: signUpUsername,
         password: signUpPassword,
       }),
@@ -37,12 +37,13 @@ function SignUp() {
           setIsModalVisible(false);
         }
       });
+    router.push("/home");
   };
 
-  const handleClose = () => {
-    setisSignUpVisible(!isSignUpVisible);
-    console.log("click fonctionne", isSignUpVisible);
-  };
+  // const handleClose = () => {
+  //   setisSignUpVisible(!isSignUpVisible);
+  //   console.log("click fonctionne", isSignUpVisible);
+  // };
 
   return (
     <div className={styles.registerContainer}>
@@ -79,7 +80,7 @@ function SignUp() {
         <button
           className={styles.btnSignUp}
           id="register"
-          onClick={() => handleSignUpTwo()}
+          onClick={() => handleSignUp()}
         >
           Sign Up
         </button>
