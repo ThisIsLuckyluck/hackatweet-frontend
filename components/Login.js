@@ -1,24 +1,24 @@
 // 1- IMPORT DES ELTS UTILISES PAR LE COMPONENT------------------------------
 // Style
 import styles from "../styles/Login.module.css";
+// Compo Enfant
+import SignUp from "./SignUp";
+import SignIn from "./SingIn";
 // Import pour le popover
-import { Modal } from 'antd';
-import { useEffect, useState } from 'react';
+// import { Modal } from 'antd';
+// import { useEffect, useState } from 'react';
 
 // 2- FUNCTION POUR AFFICHAGE -----------------------------------------------
 function Login() {
 
-// Initiation états
-const [isModalVisible, setIsModalVisible] = useState(false);
+    const handleSignUpOne = () => {
+		return <SignUp/>;
+	};
 
-const showModal = () => {
-    setIsModalVisible(!isModalVisible);
-};
-
-let modalSignUpContent;
-	if (!user.isConnected) {
-		<SignUp/>
-	}
+    const handleSignInOne = () => {
+        return <SignIn/>;
+		
+	};
 
     return (
         <div className={styles.loginContainer}>
@@ -41,14 +41,16 @@ let modalSignUpContent;
                         alt="Logo Tweeter"
                     />
                 </span>
-                <h2 className={styles.titleH2}>See what's happening</h2>
-                <h3 className={styles.titleH3}>Join Hackatweet today.</h3>
-                <div className={styles.Btn}>
-                    <button id="signin">Sign up</button>
-                </div>
-                <p className={styles.text}>Already have an account</p>
-                <div className={styles.Btn}>
-                    <button id="signup">Sign in</button>
+                <div className={styles.textContainer}>
+                    <h2 className={styles.titleH2}>See what's happening</h2>
+                    <h3 className={styles.titleH3}>Join Hackatweet today.</h3>
+                    <div>
+                        <button className={styles.btnSignUp} id="signin" onClick={() => handleSignUpOne()}>Sign up</button>
+                    </div>
+                    <p className={styles.text}>Already have an account</p>
+                    <div>
+                        <button className={styles.btnSignIn} id="signup" onClick={() => handleSignInOne()}>Sign in</button>
+                   </div>                    
                 </div>
             </div>
         </div>

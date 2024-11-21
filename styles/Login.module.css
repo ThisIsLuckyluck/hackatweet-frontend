@@ -25,7 +25,7 @@
     display: flex;
     flex-direction: column;
 
-    background-color: black;
+    background-color: #15202b;
 }
 
 /* Left Section----------------------------------------------------------------------------------------------*/
@@ -39,6 +39,59 @@
     height: 300px;
 }
 
+/* Right Section----------------------------------------------------------------------------------------------*/
+.logoRight{
+    width: 50px;
+    height: 50px;
+    margin-left: 30px;
+}
+
+.textContainer{
+    width: 50%;
+    height: 50%;
+    margin-left: 30px;
+}
+
 .titleH2, .titleH3 , .text{
     color: white;
+    font-weight: bold;
+}
+
+.titleH2 {
+    font-size: 100px;
+}
+
+
+.titleH3 {
+    font-size: 30px;
+}
+
+.btnSignUp{
+    width: 200px;
+    height: 40px;
+    
+    border-radius: 30px;
+    border: none;
+
+    background-color: #409bf1;
+    color:white;
+    font-weight: bold;
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+
+    cursor: pointer;
+}
+
+.btnSignIn{
+    width: 200px;
+    height: 40px;
+    
+    border-radius: 30px;
+    border: 1px solid #728394;
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+
+    background-color: #15202b;
+    color:#409bf1;
+    font-weight: bold;
+
+    cursor: pointer;
 }
