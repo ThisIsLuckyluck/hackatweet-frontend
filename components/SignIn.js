@@ -3,14 +3,17 @@ import styles from "../styles/global.module.css";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faXmark } from "@fortawesome/free-solid-svg-icons";
 import { useState } from "react";
+import { useRouter } from "next/router";
 
 function SignIn() {
   // Initier états
   const [SignInUsername, setSignInUsername] = useState("");
   const [SignInPassword, setSignInPassword] = useState("");
 
-  const handleSignInTwo = () => {
-    fetch("http://localhost:3000/users/SignIn", {
+  const router = useRouter();
+
+  const handleSignIn = () => {
+    fetch("http://localhost:3000/users/signin", {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({
@@ -23,9 +26,9 @@ function SignIn() {
         if (data.result) {
           setSignInUsername("");
           setSignInPassword("");
-          setIsModalVisible(false);
         }
       });
+    router.push("/home");
   };
 
   return (
@@ -58,9 +61,9 @@ function SignIn() {
         <button
           className={styles.btnSignIn}
           id="register"
-          onClick={handleSignInTwo}
+          onClick={handleSignIn}
         >
-          Sign Up
+          Sign In
         </button>
       </div>
     </div>
