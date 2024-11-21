@@ -1,27 +1,21 @@
-// 1- IMPORT DES ELTS UTILISES PAR LE COMPONENT------------------------------
-// Style
+// IMPORT DES ELTS UTILISES PAR LE COMPONENT
+
 import styles from "../styles/Login.module.css";
-// Compo Enfant
 import SignUp from "./SignUp";
 import SignIn from "./SignIn";
-// Import pour états
-import { useState } from "react"; // importer la fonction hook useState
-// Import pour le modal
-import { Modal } from "antd"; //need action in terminal: yarn add andtd
-// FaAwsome icones
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"; //need action in terminal: yarn add etc ..
+import { useState } from "react";
+import { Modal } from "antd";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faXmark } from "@fortawesome/free-solid-svg-icons";
 
-// 2- FUNCTION POUR AFFICHAGE -----------------------------------------------
 function Login() {
   // initier les états
   const [isSignUpVisible, setisSignUpVisible] = useState(false);
-  let modalSingUp;
+  let modalSignUp;
   const [isSignInVisible, setisSignInVisible] = useState(false);
-  let modalSingIn;
+  let modalSignIn;
 
-  //-------------------------------------------------------------------------------------------------
-  modalSingUp = (
+  modalSignUp = (
     <div>
       <div className={styles.btnCloseContainer}>
         <FontAwesomeIcon
@@ -39,7 +33,7 @@ function Login() {
     setisSignUpVisible(!isSignUpVisible);
   };
 
-  modalSingIn = (
+  modalSignIn = (
     <div>
       <div className={styles.btnCloseContainer}>
         <FontAwesomeIcon
@@ -60,13 +54,8 @@ function Login() {
   return (
     <div className={styles.loginContainer}>
       <div className={styles.loginLeftSection}>
-        {/* <span><img className={styles.loginBackgroundImg} src="https://abs.twimg.com/sticky/illustrations/lohp_1302x955.png" alt="Welcome Iamge"/></span> */}
         <span>
-          <img
-            className={styles.logoLeft}
-            src="https://hackatweet-frontend-two.vercel.app/_next/image?url=%2Flogo.png&w=640&q=75"
-            alt="Logo Tweeter"
-          />
+          <img className={styles.logoLeft} src="Tweet.png" alt="Logo Tweeter" />
         </span>
       </div>
 
@@ -74,7 +63,7 @@ function Login() {
         <span>
           <img
             className={styles.logoRight}
-            src="https://hackatweet-frontend-two.vercel.app/_next/image?url=%2Flogo.png&w=128&q=75"
+            src="Tweet.png"
             alt="Logo Tweeter"
           />
         </span>
@@ -95,11 +84,11 @@ function Login() {
               <Modal
                 className={styles.modal}
                 getContainer="#react-modals"
-                visible={isSignUpVisible}
+                open={isSignUpVisible}
                 closable={false}
                 footer={null}
               >
-                {modalSingUp}
+                {modalSignUp}
               </Modal>
             </div>
           )}
@@ -118,11 +107,11 @@ function Login() {
               <Modal
                 className={styles.modal}
                 getContainer="#react-modals"
-                visible={isSignInVisible}
+                open={isSignInVisible}
                 closable={false}
                 footer={null}
               >
-                {modalSingIn}
+                {modalSignIn}
               </Modal>
             </div>
           )}

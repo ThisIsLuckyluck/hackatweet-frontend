@@ -1,21 +1,13 @@
-// 1- IMPORT DES ELTS UTILISES PAR LE COMPONENT------------------------------
-// Style
-import styles from "../styles/SignIn.module.css";
-// FaAwsome icones
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"; //need action in terminal: yarn add etc ..
+// IMPORT DES ELTS UTILISES PAR LE COMPONENT
+import styles from "../styles/global.module.css";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faXmark } from "@fortawesome/free-solid-svg-icons";
-// états
-import { useState } from "react"; // importer la fonction hook useState
+import { useState } from "react";
 
-// 2- FUNCTION POUR AFFICHAGE -----------------------------------------------
 function SignIn() {
-  // Pour dispatcher info dans état initial
-  //const dispatch = useDispatch();
-
   // Initier états
-  const [SignInFirstname, setSignInFirstname] = useState(""); // initialiser l'état
-  const [SignInUsername, setSignInUsername] = useState(""); // initialiser l'état
-  const [SignInPassword, setSignInPassword] = useState(""); // initialiser l'état
+  const [SignInUsername, setSignInUsername] = useState("");
+  const [SignInPassword, setSignInPassword] = useState("");
 
   const handleSignInTwo = () => {
     fetch("http://localhost:3000/users/SignIn", {
@@ -29,8 +21,6 @@ function SignIn() {
       .then((response) => response.json())
       .then((data) => {
         if (data.result) {
-          //dispatch(login({ username: SignInUsername, token: data.token }));
-          setSignInFirstname("");
           setSignInUsername("");
           setSignInPassword("");
           setIsModalVisible(false);
