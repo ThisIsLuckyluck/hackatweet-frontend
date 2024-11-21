@@ -1,0 +1,44 @@
+.loginContainer{
+    display: flex;
+    flex-direction: row;
+}
+
+.loginLeftSection{
+    background-image: url('https://abs.twimg.com/sticky/illustrations/lohp_1302x955.png');
+    background-position: center;
+    background-size: cover;
+
+    width: 40vw;
+    height: 100vh;
+
+    display: flex;
+    flex-direction: column;
+    
+    justify-content: center;
+    align-items: center; 
+}
+
+.loginRightSection{
+    width: 60vw;
+    height: 100vh;
+
+    display: flex;
+    flex-direction: column;
+
+    background-color: black;
+}
+
+/* Left Section----------------------------------------------------------------------------------------------*/
+.loginBackgroundImg{
+    height: 100%;
+    width: 100%;
+}
+
+.logoLeft{    
+    width: 300px;
+    height: 300px;
+}
+
+.titleH2, .titleH3 , .text{
+    color: white;
+}
