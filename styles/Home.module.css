@@ -1,22 +1,81 @@
-.main {
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  min-height: 100vh;
-  padding: 4rem 0;
+.homeContainer {
+    display: flex;
+    height: 100vh;
+    background-color: #15202b;
+    color: #ffffff;
+    font-family: Arial, sans-serif;
 }
 
-.title {
-  line-height: 1.15;
-  font-size: 4rem;
+.avatar {
+    border-radius: 50%;
+    height: 2.5rem;
+    width: 2.5rem;
+    border: white 1px solid;
+    float: left;
 }
 
-.title a {
-  color: #0070f3;
-  text-decoration: none;
+.homeLeftSection {
+    display: flex;
+    flex-direction: column;
+    width: 25%;
+    border-right: rgba(114,131,148,.455) 1px solid;
+    justify-content: space-between;
 }
 
-.title a:hover, .title a:focus, .title a:active {
-  text-decoration: underline;
+.ContainerlogoLeft {
+    width: 3rem;
+    height: 3rem;
+    margin-top: 2rem;
+    margin-left: 3rem;
+}
+
+.logoLeft {
+    width: 3rem;
+    height: 3rem;
+}
+
+.ContainerUserInfos{
+    margin-left: 3rem;
+    margin-bottom: 3rem;
+    width: 50%;
+}
+
+.firstnameLeft{
+    margin-left: 2.7rem;
+    font-weight: bold;
+}
+
+.usernameLeft{
+    margin-left: 2.7rem;
+    color: gray;
+}
+
+.logout{
+    margin-top: 2rem;
+    border-radius: 2rem;
+    color: #fff;
+    padding: 0.3rem;
+    width: 5rem;
+    height: 1.8rem;
+    background-color: transparent;
+    cursor: pointer;
+}
+
+.logout:hover{
+    background-color: #1e2e3e;
+}
+
+.homeMiddleSection {
+    display: flex;
+    flex-direction: column;
+    width: 50%;
+    border-right: rgba(114,131,148,.455) 1px solid;
+    margin-left: 2rem;
+    /* border: white 1px solid; */
+}
+
+.homeRightSection {
+    color: #fff;
+    width: 25%;
+    /* border: white 1px solid; */
 }
