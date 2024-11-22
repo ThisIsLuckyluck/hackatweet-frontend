@@ -6,14 +6,6 @@
     font-family: Arial, sans-serif;
 }
 
-.avatar {
-    border-radius: 50%;
-    height: 2.5rem;
-    width: 2.5rem;
-    border: white 1px solid;
-    float: left;
-}
-
 .homeLeftSection {
     display: flex;
     flex-direction: column;
@@ -50,6 +42,14 @@
     color: gray;
 }
 
+.avatar {
+    border-radius: 50%;
+    height: 2.5rem;
+    width: 2.5rem;
+    border: white 1px solid;
+    float: left;
+}
+
 .logout{
     margin-top: 2rem;
     border-radius: 2rem;
@@ -70,12 +70,106 @@
     flex-direction: column;
     width: 50%;
     border-right: rgba(114,131,148,.455) 1px solid;
-    margin-left: 2rem;
+    /* padding-left: 2rem; */
     /* border: white 1px solid; */
+}
+
+.PrepTweet {
+    margin-top: 1.5rem;
+    width: 95%;
+    height: 10rem;
+    padding-left: 2rem;
+}
+
+.inputTweet {
+    background-color: transparent;
+    color: rgb(176, 175, 175);
+    border: none;
+    font-weight: 3rem;
+    width: 100%;
+    height: 2rem;
+    font-size: 1.2rem;
+    padding-left: 1rem;
+}
+
+.detailsTweet {
+    padding-top: 1rem;
+    display: flex;
+    justify-content: flex-end;
+}
+
+.btnTweet {
+    border: none;
+    background-color: #409bf1;
+    color:white;
+    font-weight: bold;
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+    cursor: pointer;
+    margin-left: 3rem;
+    width: 6rem;
+    height: 2rem;
+    border-radius: 2rem;
+}
+
+.btnTweet:hover{
+    background-color: #0080f9;
+    color: #000;
+}
+
+.HomeTitle, .TrendTitle {
+    font-size: larger;
+}
+
+.Tweet{
+    border: rgba(114,131,148,.455) 1px solid;
+    padding-left: 2rem;
+    max-height: 13rem;
+    padding-top: 1rem;
+}
+
+.HeaderTweet{
+    padding-left: 3rem;
+}
+.usernamePost{
+    color: rgb(176, 175, 175);
+    font-size: small;
+}
+
+.heartIconStyle {
+    padding-top: 1 rem;
+    padding-bottom: 3px;
+    cursor: pointer;
 }
 
 .homeRightSection {
     color: #fff;
     width: 25%;
-    /* border: white 1px solid; */
+}
+
+.TrendContent {
+    padding-left: 3rem;
+    padding-top: 2rem;
+}
+
+.TrendsContainer{
+    height: 70%;
+    width: 90%;
+    background-color: #273443;;
+    border-radius: 2rem;
+}
+
+.TrendsNameTag{
+    padding-top: 1rem;
+    padding-left: 1rem;
+}
+
+.TrendsNumberTag{
+    padding-left: 1rem;
+    padding-bottom: 1rem;
+}
+
+.separator {
+    padding-top: 0px;
+    padding-left: 1rem;
+    padding-bottom: 1rem;
 }
