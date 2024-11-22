@@ -4,9 +4,13 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faXmark } from "@fortawesome/free-solid-svg-icons";
 import { useState } from "react";
 import { useRouter } from "next/router";
+import { useDispatch, useSelector } from "react-redux";
+import { login } from "../reducers/users";
 
 function SignIn() {
-  // Initier états
+  const dispatch = useDispatch();
+  const user = useSelector((state) => state.users.value);
+
   const [SignInUsername, setSignInUsername] = useState("");
   const [SignInPassword, setSignInPassword] = useState("");
 
@@ -24,12 +28,16 @@ function SignIn() {
       .then((response) => response.json())
       .then((data) => {
         if (data.result) {
+          dispatch(login({ username: SignInUsername, token: data.token }));
           setSignInUsername("");
           setSignInPassword("");
         }
       });
-    router.push("/home");
   };
+
+  if (user.token) {
+    router.push("/home");
+  }
 
   return (
     <div className={styles.container}>

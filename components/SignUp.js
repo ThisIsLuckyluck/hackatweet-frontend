@@ -1,19 +1,17 @@
-// 1- IMPORT DES ELTS UTILISES PAR LE COMPONENT------------------------------
-// Style
+//IMPORT DES ELTS UTILISES PAR LE COMPONENT
 import styles from "../styles/SignUp.module.css";
 import { useState } from "react";
 import { useRouter } from "next/router";
+import { useDispatch, useSelector } from "react-redux";
+import { login } from "../reducers/users";
 
-// 2- FUNCTION POUR AFFICHAGE -----------------------------------------------
 function SignUp() {
-  // Pour dispatcher info dans état initial
-  //const dispatch = useDispatch();
+  const dispatch = useDispatch();
+  const user = useSelector((state) => state.users.value);
 
-  // Initier états
-  const [signUpFirstname, setSignUpFirstname] = useState(""); // initialiser l'état
-  const [signUpUsername, setSignUpUsername] = useState(""); // initialiser l'état
-  const [signUpPassword, setSignUpPassword] = useState(""); // initialiser l'état
-  const [isSignUpVisible, setisSignUpVisible] = useState(false);
+  const [signUpFirstname, setSignUpFirstname] = useState("");
+  const [signUpUsername, setSignUpUsername] = useState("");
+  const [signUpPassword, setSignUpPassword] = useState("");
 
   const router = useRouter();
 
@@ -30,20 +28,17 @@ function SignUp() {
       .then((response) => response.json())
       .then((data) => {
         if (data.result) {
-          //dispatch(login({ username: signUpUsername, token: data.token }));
+          dispatch(login({ username: signUpUsername, token: data.token }));
           setSignUpFirstname("");
           setSignUpUsername("");
           setSignUpPassword("");
-          setIsModalVisible(false);
         }
       });
-    router.push("/home");
   };
 
-  // const handleClose = () => {
-  //   setisSignUpVisible(!isSignUpVisible);
-  //   console.log("click fonctionne", isSignUpVisible);
-  // };
+  if (user.token) {
+    router.push("/home");
+  }
 
   return (
     <div className={styles.registerContainer}>
@@ -80,7 +75,7 @@ function SignUp() {
         <button
           className={styles.btnSignUp}
           id="register"
-          onClick={() => handleSignUp()}
+          onClick={handleSignUp}
         >
           Sign Up
         </button>
@@ -89,5 +84,4 @@ function SignUp() {
   );
 }
 
-// 3- EXPORT POUR QU'IL S'AFFICHE--------------------------------------------
 export default SignUp;
