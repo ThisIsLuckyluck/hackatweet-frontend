@@ -2,7 +2,7 @@ import styles from "../styles/Home.module.css";
 import { useSelector, useDispatch } from "react-redux";
 import { useState } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faHeart } from "@fortawesome/free-solid-svg-icons";
+import { faHeart, faTrash } from "@fortawesome/free-solid-svg-icons";
 import { logout } from "../reducers/users";
 import { useRouter } from "next/router";
 
@@ -19,8 +19,11 @@ function Home() {
   const username = `@${user.username}`;
 
   const [tweetContent, setTweetContent] = useState("");
+  const [tweets, setTweets] = useState([]);
 
-  const handleTweet = () => {
+  const CreateTweet = () => {
+    if (!tweetContent.trim()) return;
+
     fetch("http://localhost:3000/tweets/postTweet", {
       method: "POST",
       headers: { "Content-Type": "application/json" },
@@ -28,17 +31,44 @@ function Home() {
         token: user.token,
         published_since: new Date(),
         content: tweetContent,
-      }), //
+      }),
     })
       .then((response) => response.json())
       .then((data) => {
-        console.log(data);
-        setTweetContent("");
-      });
+        if (data && data.data) {
+          setTweets((prevTweets) => [
+            {
+              content: data.data.content,
+              published_since: data.data.published_since,
+            },
+            ...prevTweets,
+          ]);
+          setTweetContent("");
+        }
+      })
+      .catch((err) => console.error(err));
+  };
+
+  const DeleteTweet = (tweetId) => {
+    fetch("http://localhost:3000/tweets/deleteById", {
+      method: "DELETE",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ _id: tweetId }),
+    })
+      .then((response) => response.json())
+      .then((data) => {
+        if (data.result === "Tweet has been deleted") {
+          setTweets((prevTweets) =>
+            prevTweets.filter((tweet) => tweet._id !== tweetId)
+          );
+        }
+      })
+      .catch((err) => console.error(err));
   };
 
   if (!user.token) {
     router.push("/");
+    return null;
   }
 
   return (
@@ -72,46 +102,39 @@ function Home() {
             value={tweetContent}
           />
           <div className={styles.detailsTweet}>
-            0/280
+            {tweetContent.length}/280
             <button
               className={styles.btnTweet}
               id="sendTweet"
-              onClick={handleTweet}
+              onClick={CreateTweet}
             >
               Tweet
             </button>
           </div>
         </div>
-        <div className={styles.Tweet}>
-          <img src="avatar.png" alt="Avatar" className={styles.avatar} />
-          <h3 className={styles.HeaderTweet}>
-            {firstname}{" "}
-            <span className={styles.usernamePost}>{username} - 6 hours</span>
-          </h3>
-          <p className={styles.contentTweet}>
-            Le contenu du message est assez long pour voir si le coeur en
-            dessous s'adapte bien au texte
-          </p>
-          <FontAwesomeIcon
-            icon={faHeart}
-            // onClick={() => handleLikeMovie()}
-            className={styles.heartIconStyle}
-          />{" "}
-          1
-        </div>
-        <div className={styles.Tweet}>
-          <img src="avatar.png" alt="Avatar" className={styles.avatar} />
-          <h3 className={styles.HeaderTweet}>
-            {firstname}{" "}
-            <span className={styles.usernamePost}>{username} - 6 hours</span>
-          </h3>
-          <p className={styles.contentTweet}>Un autre message</p>
-          <FontAwesomeIcon
-            icon={faHeart}
-            // onClick={() => handleLikeTweet()}
-            className={styles.heartIconStyle}
-          />{" "}
-          1
+        <div className={styles.TweetsList}>
+          {tweets.map((tweet, index) => (
+            <div className={styles.Tweet} key={index}>
+              <img src="avatar.png" alt="Avatar" className={styles.avatar} />
+              <h3 className={styles.HeaderTweet}>
+                {firstname}{" "}
+                <span className={styles.usernamePost}>
+                  {username} -{" "}
+                  {new Date(tweet.published_since).toLocaleTimeString()}
+                </span>
+              </h3>
+              <p className={styles.contentTweet}>{tweet.content}</p>
+              <FontAwesomeIcon
+                icon={faHeart}
+                className={styles.heartIconStyle}
+              />{" "}
+              <FontAwesomeIcon
+                icon={faTrash}
+                className={styles.TrashIconStyle}
+                onClick={() => DeleteTweet(tweet._id)}
+              />{" "}
+            </div>
+          ))}
         </div>
       </div>
       <div className={styles.homeRightSection}>
